@@ -2,6 +2,8 @@ import 'dotenv/config';
 
 async function getFlights(lon: number, lat: number) {
 
+    // 150 -> km
+    // probably should change that to a variable
     const lonDelta: number = 150 / (111 * Math.cos(lat * Math.PI / 180));
     const latDelta: number = 150 / 111;
 
@@ -24,8 +26,6 @@ async function getFlights(lon: number, lat: number) {
 }
 
 function haversine(lat1: number, lon1: number, lat2: number, lon2: number) {
-    const earthRadius = 6371;
-
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
 
@@ -35,7 +35,9 @@ function haversine(lat1: number, lon1: number, lat2: number, lon2: number) {
     * Math.sin(dLon / 2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return earthRadius * c;
+    
+    // 6371 -> earth radius
+    return 6371 * c;
 }
 
 console.log(await getFlights(24.105719036474586, 56.97013623269729));
