@@ -1,6 +1,18 @@
-import Flights from './util/Flights.ts';
+import Express from "./services/server/Express.ts";
 
-const flights = new Flights(24.105719036474586, 56.97013623269729);
+// const lon: number = 24.10641937837778;
+// const lat: number = 56.94727913647638;
 
-console.log(await flights.getToken());
+// blah blah blah its lowercase idgaf
+class app {
 
+    public express = new Express(8080);
+
+    constructor() {
+        this.express.setRoutes();
+        this.express.startExpress();
+    }
+
+}
+
+new app();
